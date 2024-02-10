@@ -64,6 +64,14 @@
       ((or (eq? (car lat) o1) (eq? (car lat) o2)) (cons new (cdr lat)))
       (else (cons (car lat) (subst new o1 o2 (cdr lat)))))))
 
+(define multirember
+  (lambda (a lat)
+    (cond
+      ((null? lat) '())
+      ((eq? (car lat) a) (multirember a (cdr lat)))
+      (else (cons (car lat) (multirember a (cdr lat)))))))
+
 (provide atom? lat? member? 
 	 rember firsts seconds 
-	 insertR insertL subst subst2)
+	 insertR insertL subst subst2
+	 multirember)
